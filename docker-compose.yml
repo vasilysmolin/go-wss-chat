@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  centrifugo:
+    image: centrifugo/centrifugo:v6
+    volumes:
+      - ./config.json:/centrifugo/config.json
+    command: centrifugo -c config.json
+    ports:
+      - 8000:8000
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+#  chat:
+#    build: .
+#    environment:
+#      - CENTRIFUGO_URL=ws://centrifugo:8000/connection/websocket
+#    depends_on:
+#      - centrifugo
